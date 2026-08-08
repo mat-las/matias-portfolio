@@ -5,16 +5,68 @@
 .homepage {
   position: relative;
   isolation: isolate;
+
+  width: 100%;
   min-height: 100svh;
   overflow: hidden;
 }
 
-/* Keep all actual page content above texture layers */
 
-.homepage > * {
-  position: relative;
-  z-index: 2;
+/* ========================================
+   HERO ORB / SUN
+   ======================================== */
+
+.hero-orb {
+  position: absolute;
+
+  left: var(--orb-x, 50%);
+  top: var(--orb-y, 40%);
+
+  width: var(--orb-size, clamp(220px, 18vw, 320px));
+  aspect-ratio: 1;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+  background: #F12128;
+
+  /*
+    Above sky + textures,
+    below Machu Picchu.
+  */
+  z-index: 3;
+
+  pointer-events: none;
 }
+
+
+/* ========================================
+   MACHU PICCHU FOREGROUND
+   ======================================== */
+
+.hero-mountain {
+  position: absolute;
+
+  left: 50%;
+  bottom: var(--mountain-y, -5vh);
+
+  width: var(--mountain-width, 100%);
+  max-width: none;
+  height: auto;
+
+  display: block;
+
+  transform: translateX(-50%);
+
+  /*
+    Mountain sits in front of the sun.
+  */
+  z-index: 4;
+
+  pointer-events: none;
+  user-select: none;
+}
+
 
 /* ========================================
    CREAM
@@ -32,18 +84,22 @@
     );
 }
 
-/* Warm colour / saturation layer */
+
+/* Cream warmth / saturation */
 
 .homepage--cream::after {
   content: "";
   position: absolute;
   inset: 0;
+
   z-index: 0;
   pointer-events: none;
 
   background: rgba(214, 168, 102, 0.10);
+
   mix-blend-mode: multiply;
 }
+
 
 /* Cream paper grain */
 
@@ -51,10 +107,12 @@
   content: "";
   position: absolute;
   inset: 0;
+
   z-index: 1;
   pointer-events: none;
 
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 
   background-repeat: repeat;
   background-size: 360px 360px;
@@ -63,132 +121,111 @@
   opacity: 0.42;
 }
 
+
 /* ========================================
-   BLUE
+   BLUE — MACHU PICCHU HERO
    ======================================== */
 
 .homepage--blue {
-  background-color: #1833C7;
+  background-color: #002888;
 
   background-image:
 
+    /* Brighter body through left / centre */
     radial-gradient(
-      ellipse at 0% 50%,
-      rgba(8, 15, 88, 0.22) 0%,
-      rgba(8, 15, 88, 0.10) 30%,
-      rgba(8, 15, 88, 0) 65%
+      ellipse at 25% 48%,
+      rgba(0, 48, 153, 0.34) 0%,
+      rgba(0, 45, 145, 0.16) 38%,
+      rgba(0, 45, 145, 0) 72%
     ),
 
-    /* Darker top-right */
+    /* Restrained central blue lift */
+    radial-gradient(
+      ellipse at 55% 55%,
+      rgba(4, 45, 148, 0.20) 0%,
+      rgba(4, 43, 142, 0.08) 42%,
+      rgba(4, 43, 142, 0) 75%
+    ),
+
+    /* Darker upper-right */
     radial-gradient(
       ellipse at 100% 0%,
-      rgba(6, 10, 67, 0.62) 0%,
-      rgba(8, 15, 88, 0.30) 36%,
-      rgba(8, 15, 88, 0) 68%
+      rgba(0, 18, 82, 0.30) 0%,
+      rgba(0, 22, 92, 0.13) 42%,
+      rgba(0, 22, 92, 0) 76%
     ),
 
-    /* Slight darker depth at lower-left */
-    radial-gradient(
-      ellipse at 0% 100%,
-      rgba(6, 10, 67, 0.62) 0%,
-      rgba(8, 15, 88, 0.30) 36%,
-      rgba(8, 15, 88, 0) 68%
-    ),
-
-    /* Main saturated cobalt field */
+    /* Main royal-blue field */
     linear-gradient(
-      140deg,
-      #3158F0 0%,
-      #284CE4 25%,
-      #1C38CC 50%,
-      #1025A7 100%
+      112deg,
+      #002B8E 0%,
+      #00298A 30%,
+      #002887 58%,
+      #00247F 100%
     );
 }
 
-/* Blue grain */
+
+/* ========================================
+   BLUE — LARGE PATCHY TEXTURE
+   ======================================== */
+
+.homepage--blue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /*
+    First layer above the CSS sky.
+  */
+  z-index: 1;
+  pointer-events: none;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='700' height='700' viewBox='0 0 700 700'%3E%3Cfilter id='cloud'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='700' height='700' filter='url(%23cloud)' opacity='.9'/%3E%3C/svg%3E");
+
+  background-repeat: repeat;
+  background-size: 800px 800px;
+
+  mix-blend-mode: soft-light;
+  opacity: 0.30;
+
+  filter: contrast(145%);
+}
+
+
+/* ========================================
+   BLUE — FINE SCREENPRINT GRAIN
+   ======================================== */
 
 .homepage--blue::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+
+  /*
+    Above patch texture,
+    below sun and mountain.
+  */
+  z-index: 2;
   pointer-events: none;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  background-repeat: repeat;
-  background-size: 300px 300px;
-
-  mix-blend-mode: overlay;
-  opacity: 0.42;
-}
-
-/* ========================================
-   GREEN
-   ======================================== */
-
-.homepage--green {
-  background-color: #204D33;
 
   background-image:
-
-    /* Dark top-right */
-    radial-gradient(
-      ellipse at 100% 0%,
-      #1E412DDD 0%,
-      #1E412D80 30%,
-      #1E412D00 65%
-    ),
-
-    /* Dark bottom-left */
-    radial-gradient(
-      ellipse at 0% 100%,
-      #1E412DCC 0%,
-      #1E412D70 32%,
-      #1E412D00 68%
-    ),
-
-    /* Stronger illuminated area through centre-left */
-    radial-gradient(
-      ellipse at 38% 58%,
-      #356242FF 0%,
-      #356242CC 34%,
-      #35624266 55%,
-      #35624200 76%
-    ),
-
-    /* More visible secondary lift */
-    radial-gradient(
-      ellipse at 72% 46%,
-      #356242CC 0%,
-      #35624299 32%,
-      #35624255 52%,
-      #35624200 72%
-    ),
-
-    /* Main forest field */
-    linear-gradient(
-      140deg,
-      #356242 0%,
-      #204D33 75%,
-      #1E412D 100%
-    );
-}
-
-/* Green grain */
-
-.homepage--green::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23grain)' opacity='.72'/%3E%3C/svg%3E");
 
   background-repeat: repeat;
-  background-size: 300px 300px;
+  background-size: 240px 240px;
 
-  mix-blend-mode: overlay;
-  opacity: 0.42;
+  mix-blend-mode: soft-light;
+  opacity: 0.16;
+}
+
+
+/* ========================================
+   FUTURE HERO CONTENT
+   ======================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 5;
 }
