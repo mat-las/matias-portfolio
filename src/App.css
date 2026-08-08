@@ -13,16 +13,55 @@
 
 
 /* ========================================
-   HERO ORB / SUN
+   HERO ARTBOARD
+   ======================================== */
+
+.hero-art {
+  /*
+    The original composition is 16:9.
+
+    This makes the artboard large enough to cover
+    the viewport while always remaining 16:9.
+  */
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: max(100vw, calc(100svh * 16 / 9));
+  aspect-ratio: 16 / 9;
+
+  transform: translateX(-50%);
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  /*
+    Coordinates for objects inside the artwork.
+  */
+  --orb-x: 50%;
+  --orb-y: 44%;
+  
+  --mountain-offset-y: 3%;
+}
+
+
+/* ========================================
+   RED SUN
    ======================================== */
 
 .hero-orb {
   position: absolute;
 
-  left: var(--orb-x, 50%);
-  top: var(--orb-y, 40%);
+  left: var(--orb-x);
+  top: var(--orb-y);
 
-  width: var(--orb-size, clamp(220px, 18vw, 320px));
+  /*
+    Responsive to the actual browser width,
+    rather than being a fixed pixel size.
+  */
+  width: clamp(170px, 18vw, 320px);
   aspect-ratio: 1;
 
   transform: translate(-50%, -50%);
@@ -30,40 +69,29 @@
   border-radius: 50%;
   background: #F12128;
 
-  /*
-    Above sky + textures,
-    below Machu Picchu.
-  */
-  z-index: 3;
-
-  pointer-events: none;
+  z-index: 1;
 }
 
 
 /* ========================================
-   MACHU PICCHU FOREGROUND
+   MACHU PICCHU
    ======================================== */
 
 .hero-mountain {
   position: absolute;
 
-  left: 50%;
-  bottom: var(--mountain-y, -5vh);
+  left: 0;
+  top: var(--mountain-offset-y, 0);
 
-  width: var(--mountain-width, 100%);
-  max-width: none;
-  height: auto;
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
 
   display: block;
 
-  transform: translateX(-50%);
+  z-index: 2;
 
-  /*
-    Mountain sits in front of the sun.
-  */
-  z-index: 4;
-
-  pointer-events: none;
   user-select: none;
 }
 

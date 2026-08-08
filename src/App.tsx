@@ -1,22 +1,22 @@
 import './App.css'
 
 function App() {
-return (
+  return (
     <main className="homepage homepage--blue">
 
-  <div
-    className="hero-orb"
-    aria-hidden="true"
-  />
+      <div className="hero-art" aria-hidden="true">
 
-  <img
-    className="hero-mountain"
-    src="/images/machu-hero.png"
-    alt=""
-    aria-hidden="true"
-  />
+        <div className="hero-orb" />
 
-</main>
+        <img
+          className="hero-mountain"
+          src="/images/machu-hero.png"
+          alt=""
+        />
+
+      </div>
+
+    </main>
   )
 }
 
