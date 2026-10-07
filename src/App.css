@@ -989,7 +989,7 @@
 .development-steps span {
   font-family: var(--mono);
   font-size: 0.7rem;
-  color: var(--copper);
+  color: var(--copper-ink);
 }
 .development-steps h3 {
   font-size: 1.4rem;

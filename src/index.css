@@ -12,6 +12,7 @@
   --pacific: #0b5fff;
   --mineral: #75a7c9;
   --copper: #a76542;
+  --copper-ink: #835035;
   --line: rgba(7, 22, 38, 0.22);
   --mono: "IBM Plex Mono", monospace;
   --gutter: clamp(22px, 4.3vw, 80px);
