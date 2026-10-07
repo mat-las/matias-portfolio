@@ -22,7 +22,7 @@ export default function ProjectDetail() {
     ["08", "Reflection", p.reflection],
   ];
   return (
-    <article className="case-study">
+    <article className="case-study" data-placeholder={p.placeholder}>
       <div className="case-intro section-pad">
         <Link className="back-link" to="/projects">
           <Arrow direction="left" /> Project index

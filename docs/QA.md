@@ -13,7 +13,7 @@
 
 ## In progress at source checkpoint
 
-Final screenshot review after the last typography/3D refinements; complete browser-suite rerun; GitHub Pages base-path verification; keyboard/3D/fallback checks. Headless Chromium required an alternate bundled executable in this restricted runtime. Some combined runs were interrupted by the headless browser closing, so no unmeasured frame-rate or full-device claim is made.
+GitHub Pages base-path verification now passes for all 18 pages, including assets and internal links. The normal GitHub Actions production check passed on commit 3df3d88. A full browser QA job has now been added to CI for the keyboard/3D/fallback and final screenshot checks. Headless Chromium required an alternate bundled executable in this restricted runtime. Some combined runs were interrupted by the headless browser closing, so no unmeasured frame-rate or full-device claim is made.
 
 ## Publication limits
 

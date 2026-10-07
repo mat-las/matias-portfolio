@@ -49,7 +49,7 @@ for (const file of htmlFiles) {
       throw Error(`${file}: missing asset ${url}`);
     });
   }
-  if (file.includes("dist/projects/") && !file.endsWith("projects/index.html"))
+  if (html.includes('data-placeholder="true"'))
     assert(
       html.includes("Illustrative project"),
       `${file}: example project requires a visible label`,

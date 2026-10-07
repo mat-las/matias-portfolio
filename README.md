@@ -19,7 +19,7 @@ npm run preview
 npm run lint
 npm run check:content # after building
 npx playwright install chromium
-npm run test:browser # with npm run preview running
+npm run test:browser # starts its own static preview server
 ```
 
 Browser tests use `TEST_BASE_URL` (default http://localhost:4173). Standard Chromium is used by default; `CHROMIUM_EXECUTABLE_PATH` supports a supplied local browser. See docs/QA.md for the actual checks and limitations from this build.
