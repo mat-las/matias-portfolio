@@ -19,6 +19,19 @@ class Boundary extends Component<
     return this.state.error ? this.props.fallback : this.props.children;
   }
 }
+// Probe before mounting R3F: renderer initialization can reject outside a React
+// error boundary. Release the probe immediately; only the scene stays active.
+function canRenderWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("webgl2");
+    if (!context) return false;
+    context.getExtension("WEBGL_lose_context")?.loseContext();
+    return true;
+  } catch {
+    return false;
+  }
+}
 export default function AssemblyViewer() {
   const reduced = useReducedMotion();
   const host = useRef<HTMLDivElement>(null);
@@ -55,7 +68,8 @@ export default function AssemblyViewer() {
       !low.connection?.saveData &&
       (low.deviceMemory ?? 8) > 2
     )
-      setReady(true);
+      if (canRenderWebGL()) setReady(true);
+      else setFailed(true);
     return () => {
       observer.disconnect();
       document.removeEventListener("visibilitychange", update);
@@ -147,7 +161,10 @@ export default function AssemblyViewer() {
       </svg>
       <div className="assembly-controls">
         {!ready && !failed ? (
-          <button onClick={() => setReady(true)}>
+          <button onClick={() => {
+            if (canRenderWebGL()) setReady(true);
+            else setFailed(true);
+          }}>
             Inspect in 3D{" "}
             <span aria-hidden="true">
               <Arrow />
