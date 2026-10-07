@@ -38,7 +38,7 @@ For GitHub Pages at `mat-las.github.io/matias-portfolio`:
 VITE_BASE_PATH=/matias-portfolio/ VITE_SITE_URL=https://mat-las.github.io/matias-portfolio npm run build
 ```
 
-A manual GitHub Pages workflow is included. Set the repository's Pages source to GitHub Actions before running “Deploy portfolio” from the Actions tab. Publication is separate from source commits. The ordinary CI workflow builds, lints, checks route output and saves a dist artifact; it does not deploy.
+A manual GitHub Pages workflow is included. Set the repository's Pages source to GitHub Actions before running “Deploy portfolio” from the Actions tab. Publication is separate from source commits. The ordinary CI workflow builds, lints, checks route output, runs Chromium interaction/accessibility tests and saves screenshots plus a dist artifact; it does not deploy.
 
 Static route directories work without SPA rewrites. Configure your host to serve `404.html` for missing paths. Canonical and Open Graph URLs are generated at build time from VITE_SITE_URL; set this to the actual final public address. The default anticipates GitHub Pages and is not a claim of live deployment.
 

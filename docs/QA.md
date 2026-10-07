@@ -1,22 +1,26 @@
 # Validation record
 
-## Verified at source checkpoint
+## Verified on 7 October 2026
 
-- TypeScript production build passes.
-- All 17 public routes and the 404 page emit full static HTML.
-- Route validation passes for unique titles, descriptions, canonical and Open Graph metadata, one h1 per page, local media/download/script/style links, placeholder labels and sitemap coverage.
-- Oxlint passes.
-- Chromium checks completed for mobile navigation, filters, grid switching, search/empty results, quick/full case-study state and chart data.
-- Automated axe WCAG 2 A/AA and WCAG 2.1 AA scans returned zero violations on Home, Projects, a project case study, About, Experience and Contact at mobile width.
-- Initial desktop/mobile screenshots visually inspected; metadata was enlarged and direction icons changed to SVG after review.
-- PDF preview rendered and visually inspected with the project typeface embedded.
+- TypeScript production build, Oxlint and static content checks pass.
+- All 17 public routes plus the 404 page emit complete static HTML with unique metadata, one h1, valid local assets/downloads and sitemap coverage.
+- GitHub Pages subdirectory links and assets verified across all 18 pages.
+- Desktop Chromium verified wireframe switching, rendered assembly rotation and keyboard separation control.
+- Capability selection, mobile navigation, category filters, list/grid switching, search and empty state pass.
+- Quick/full case-study views, chart controls and the accessible data table pass.
+- Home has no horizontal overflow at 1440, 1024, 768, 390 and 320px. Six primary page types were also checked at mobile width.
+- Reduced-motion fallback and keyboard focus pass. Case-study reading content works with JavaScript disabled.
+- Forced WebGL unavailability retains the static image and navigation; no browser page errors remain.
+- Desktop and mobile home, archive and case-study screenshots visually inspected. PDF preview also rendered and inspected.
 
-## In progress at source checkpoint
+## Accessibility and CI
 
-GitHub Pages base-path verification now passes for all 18 pages, including assets and internal links. The normal GitHub Actions production check passed on commit 3df3d88. A full browser QA job has now been added to CI for the keyboard/3D/fallback and final screenshot checks. Headless Chromium required an alternate bundled executable in this restricted runtime. Some combined runs were interrupted by the headless browser closing, so no unmeasured frame-rate or full-device claim is made.
+GitHub Actions [run 37592068855](https://github.com/mat-las/matias-portfolio/actions/runs/37592068855) passed all checks on application commit `181ae07252f41f7a30945f7214757d0098221e7f`. Automated axe WCAG 2 A/AA and WCAG 2.1 AA scans returned zero violations on Home, Projects, a case study, About, Experience and Contact. Screenshots, machine-readable results and the static build are attached to that run. Earlier CI revealed a WebGL initialization gap and low-contrast copper step numbers. Both were corrected; the tests retain regression coverage. Automated checks are not a substitute for a full manual assistive-technology audit.
+
+## Performance scope
+
+One lazy, render-on-demand R3F scene, capped DPR, offscreen/hidden suspension and opt-in mobile rendering are implemented. The temporary WebGL capability probe is released before the scene mounts. Fonts and responsive WebP assets are local. No sustained frame-rate, physical-device or Core Web Vitals claim is made; these need measurement on the deployed site and representative hardware.
 
 ## Publication limits
 
-All projects remain clearly labelled examples. Replace real project media, outcomes, role descriptions, institution/employment dates, email, LinkedIn and final CV before using the site in applications. The generated impeller and synthetic plots are illustrative only. Hosting workflow is manual and deployment is not assumed.
-
-This file will be updated with the final validation results in the follow-up commit.
+All 12 projects remain clearly labelled examples. Replace project media, outcomes, role descriptions, institution/employment dates, email, LinkedIn and the CV preview before using the site in applications. The impeller and synthetic plots are illustrative. The GitHub Pages deployment workflow is manual; this source delivery does not publish the site.

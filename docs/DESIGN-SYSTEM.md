@@ -16,15 +16,17 @@ A mechanical engineer's working atlas: physical systems made legible through an 
 | Limestone | #E9E2D5 | Personal context and finance                |
 | Copper    | #A76542 | Mechanical fasteners and sparse annotations |
 
+Copper text on limestone uses #835035 for AA contrast; #A76542 remains the material accent.
+
 Typography: Archivo Variable for the main hierarchy, Source Serif 4 italic for selected editorial phrases, IBM Plex Mono for metadata. Only Latin subsets are bundled; add another subset for additional writing systems. All three fonts are open source, self-hosted and licensed under the SIL OFL. No remote font requests.
 
-Scale: body 16–18px; technical metadata 12px minimum; responsive display titles 54–144px; headings 42–90px. Six-column editorial logic, with 22px mobile gutters and fluid desktop gutters. Breakpoints at 380, 760, 1100 and 1700px. Surfaces are square; shape follows function. Borders use one-pixel lines, with a three-pixel active filter edge. Icons are limited to semantic directional arrows and the typographic monogram. Project media uses 3:2 source imagery and bounded responsive crops.
+Scale: body 16–18px; technical metadata predominantly 12px; responsive display titles 54–144px; headings 42–90px. Six-column editorial logic, with 22px mobile gutters and fluid desktop gutters. Breakpoints at 380, 760, 1100 and 1700px. Surfaces are square; shape follows function. Borders use one-pixel lines, with a three-pixel active filter edge. Icons are limited to semantic directional arrows and the typographic monogram. Project media uses 3:2 source imagery and bounded responsive crops.
 
 ## Motion and 3D
 
 180ms control changes, 650ms reveals, cubic-bezier(.22,1,.36,1). Small masked image zooms and preview rotation create contrast against static reading areas. No custom scroll engine or scroll hijacking. Scroll reveals use IntersectionObserver and are removed for reduced motion.
 
-The engineering object is an illustrative coaxial assembly: perforated annular plates, rotor vanes and fasteners. Separation explains assembly relationships; wireframe reveals construction; rotation works from a keyboard-accessible button. One dynamically imported R3F canvas, render-on-demand, DPR capped at 1.5, a procedurally generated studio environment and no external textures or expensive postprocessing. Pointer tilt requests frames only when relevant. Offscreen/hidden canvases stop rendering. Mobile, reduced motion, data saver and low-memory devices start with a WebP and opt into the inspector. WebGL failure retains the visual fallback.
+The engineering object is an illustrative coaxial assembly: perforated annular plates, rotor vanes and fasteners. Separation explains assembly relationships; wireframe reveals construction; rotation works from a keyboard-accessible button. One dynamically imported R3F canvas, render-on-demand, DPR capped at 1.5, a procedurally generated studio environment and no external textures or expensive postprocessing. Pointer tilt requests frames only when relevant. Offscreen/hidden canvases stop rendering. Mobile, reduced motion, data saver and low-memory devices start with a WebP and opt into the inspector. A short-lived WebGL2 capability probe is released before mounting the scene. Unsupported WebGL retains the visual fallback; context loss also returns to the static image.
 
 ## Reference research
 
